@@ -27,7 +27,7 @@ A small analytics dashboard for Polymarket. I built this to analyze volatility t
 
 ## How it works (high level)
 
-A data pipeline runs on the VPS and snapshots market data every 15 minutes, cleans it up, and stores it in Postgres. The API queries this data and uses Redis caching to keep responses quick and reduce database load. Time windows are validated server-side to prevent expensive queries. This setup makes it easy to add new leaderboard metrics by simply adding a new SQL query to the backend.
+A data pipeline runs on the VPS and snapshots market data every 15 minutes, cleans it up, and stores it in Postgres. These pipeline scripts live in the scripts/ folder. The API queries this data and uses Redis caching to keep responses quick and reduce database load. Time windows are validated server-side to prevent expensive queries. This setup makes it easy to add new leaderboard metrics by simply adding a new SQL query to the backend.
 
 ---
 
