@@ -64,7 +64,7 @@ You need:
 - `GET /api/status` - pipeline status
 - `GET /api/leaderboards/<type>?window=7%20days` - leaderboard metrics
 - `GET /api/markets/search?q=<query>`
-- `GET /api/markets/:slug/timeseries?window=7%20days` - time seriese data per market
+- `GET /api/markets/:slug/timeseries?window=7%20days` - time series data per market
 
 ---
 
