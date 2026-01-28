@@ -35,8 +35,8 @@ A data pipeline runs on the VPS and snapshots market data every 15 minutes, clea
 
 ### 1. Install dependencies
 
-    git clone <REPO>
-    cd <REPO>
+    git clone https://github.com/acyclops/polymarket-lens.git
+    cd polymarket-lens
     npm install
 
 ### 2. Configure environment variables
