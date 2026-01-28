@@ -1,0 +1,722 @@
+/* =========================
+  Global
+========================= */
+
+:root {
+  color-scheme: dark;
+  --bg: #070a12;
+  --panel: rgba(255, 255, 255, 0.035);
+  --panel-2: rgba(255, 255, 255, 0.055);
+  --border: rgba(255, 255, 255, 0.10);
+  --border-soft: rgba(255, 255, 255, 0.07);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.65);
+  --muted2: rgba(255, 255, 255, 0.50);
+  --accent: rgba(99, 102, 241, 0.85);
+  --accent-soft: rgba(99, 102, 241, 0.22);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  overscroll-behavior: none;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: block;
+  --nav-h: 60px;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================
+   Top Nav
+========================= */
+
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(10, 12, 18, 0.72);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.topnav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.navlinks {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.navlink {
+  text-decoration: none;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 650;
+}
+
+.navlink:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navlink.active {
+  color: var(--text);
+  background: var(--accent-soft);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+
+/* =========================
+   Page Shell
+========================= */
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 26px 20px;
+  min-width: 0;
+}
+
+.pageHeader {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.pageTitle {
+  margin: 0 0 14px 0;
+  font-size: 56px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.windowRow {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+
+.hint {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+
+/* =========================
+   Tabs + Select
+========================= */
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+.tab.active {
+  background: var(--accent-soft);
+  color: var(--text);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+}
+
+.windowSelect {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.windowLabel {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.select {
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.select:focus {
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+
+/* =========================
+   Panel + Table
+========================= */
+
+.panel {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: var(--panel);
+  min-width: 0;
+}
+
+.tableWrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: rgba(10, 12, 18, 0.55);
+  border-radius: 12px;
+  position: relative;
+}
+
+.tableScrollTop {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 5;
+  height: 14px;
+  margin-bottom: 8px;
+}
+
+.tableScrollInner {
+  width: max-content;
+  min-width: 660px;
+  height: 1px;
+}
+
+.tableWrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  background: rgba(10, 12, 18, 0.55);
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: rgba(10, 12, 18, 0.92);
+  backdrop-filter: blur(10px);
+  text-align: right;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.table td {
+  text-align: right;
+  color: rgba(255, 255, 255, 0.82);
+  vertical-align: top;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.marketLink {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.marketLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.table td:first-child {
+  max-width: 700px;
+}
+
+
+/* =========================
+   Status
+========================= */
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.statusCard {
+  padding: 16px;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.statusLabel {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.statusPill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.statusPill.ok {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.statusPill.fail {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.statusList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 18px;
+  margin: 0;
+}
+
+.statusList dt {
+  color: var(--muted2);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.statusList dd {
+  margin: 2px 0 0 0;
+  font-weight: 600;
+}
+
+.errorPanel {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.errorTitle {
+  margin: 0 0 10px 0;
+  color: #f87171;
+}
+
+.errorBlock {
+  margin: 0;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 13px;
+}
+
+
+/* =========================
+   Market Page
+========================= */
+
+.marketHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  min-width: 0;
+}
+
+.marketTitle {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.6px;
+}
+
+.marketSubtitle {
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.chartPanel {
+  padding: 14px;
+}
+
+.chartMeta {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .marketTitle {
+    font-size: 32px;
+  }
+}
+
+
+/* =========================
+   Market List
+========================= */
+
+.marketList {
+  list-style: none;
+  margin: 14px 0 0 0;
+  padding: 0;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.marketItem {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.marketItem:last-child {
+  border-bottom: none;
+}
+
+.marketItemLink {
+  display: block;
+  padding: 12px 14px;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.marketItemLink:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+
+/* =========================
+   SearchBox
+========================= */
+
+.searchbox {
+  position: relative;
+  width: 100%;
+}
+
+.searchbox__input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.searchbox__input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.searchbox__input:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.searchbox__input:focus {
+  border-color: rgba(120, 160, 255, 0.8);
+  box-shadow: 0 0 0 3px rgba(120, 160, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.searchbox__input.is-open {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.searchbox__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(17, 17, 17, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  overflow: hidden;
+  max-height: 320px;
+  overflow-y: auto;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+}
+
+.searchbox__meta {
+  padding: 10px 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.searchbox__item {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  transition: background 120ms ease;
+}
+
+.searchbox__item:hover,
+.searchbox__item.is-active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.searchbox__footer {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  transition: background 120ms ease;
+}
+
+.searchbox__footer:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.searchbox__q {
+  color: rgba(180, 205, 255, 0.95);
+}
+
+.searchbox__menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.searchbox__menu::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+}
+
+.searchbox__menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* =========================
+   Error box
+========================= */
+
+.error-box {
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid #f99;
+  border-radius: 8px;
+  background: #fee;
+  color: #000;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.error-box strong {
+  font-weight: 600;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 640px) {
+  .pageTitle {
+    font-size: 40px;
+  }
+
+  .topnav-inner {
+    padding: 12px 14px;
+  }
+
+  .page {
+    padding: 14px 12px;
+  }
+
+  .panel {
+    padding: 12px;
+  }
+
+  .tableWrap {
+    border-radius: 14px;
+  }
+
+  .tableWrap:not(.table--wide) .table {
+    min-width: 0;
+  }
+
+  .tableWrap.table--wide .table {
+    min-width: 660px;
+  }
+
+  .table th,
+  .table td {
+    padding: 14px 10px;
+    line-height: 1.25;
+  }
+
+  .tableWrap.table--wide .table th,
+  .tableWrap.table--wide .table td {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    line-height: 1.28;
+  }
+
+  .tableWrap.table--wide .table th:first-child,
+  .tableWrap.table--wide .table td:first-child {
+    width: 170px;
+    max-width: 170px;
+    padding-right: 8px;
+  }
+
+  .tableWrap:not(.table--wide) .table th:first-child,
+  .tableWrap:not(.table--wide) .table td:first-child {
+    width: auto;
+    max-width: none;
+    padding-right: 10px;
+  }
+
+  .table td:first-child a {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .table th:not(:first-child),
+  .table td:not(:first-child) {
+    padding-left: 8px;
+    padding-right: 8px;
+    white-space: nowrap;
+  }
+
+  .tabs {
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .tab {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}

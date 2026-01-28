@@ -1,0 +1,19 @@
+# env
+.env
+.env.*
+!.env.example
+
+# runtime data
+data/
+logs/
+
+# Node/build
+node_modules/
+dist/
+client/dist/
+
+# http client test files
+*.http
+
+.DS_Store
+__MACOSX/
