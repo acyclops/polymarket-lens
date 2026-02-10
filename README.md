@@ -1,6 +1,6 @@
 # Polymarket Lens
 
-A small analytics dashboard for Polymarket. I built this to analyze volatility trends across markets using cached queries over historical data.
+A small analytics dashboard for Polymarket. I built this to analyze volatility trends across markets using queries over snapshotted data.
 
 **Live:** https://acyclops.dev
 
